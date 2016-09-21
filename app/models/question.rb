@@ -19,4 +19,13 @@ class Question < ActiveRecord::Base
   def total_answers
     self.answers.count
   end
+
+  def points
+    votes.sum(:value)
+  end
+
+  def time_since_creation
+    ((Time.now - created_at) / 3600).round
+  end
+
 end
