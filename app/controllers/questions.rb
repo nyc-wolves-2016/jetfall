@@ -6,7 +6,8 @@ get '/questions/:id' do
   @question = Question.find(params[:id])
   @author = User.find(@question.user_id)
   @answers = Answer.where(question_id: @question.id)
-
+  @question_comments = @question.comments
+  
   erb :'questions/show'
 end
 
@@ -17,7 +18,7 @@ post '/questions' do
     question.save
     redirect "/questions/#{question.id}"
   else
-    @errors = user.errors.full_messages
+    @errors = question.errors.full_messages
     erb :'questions/new'
   end
 end

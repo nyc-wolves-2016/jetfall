@@ -6,6 +6,20 @@
     by <%= @author.username %> </br>
     <%= @question.body %>
   </p>
+  <% if @question_comments %>
+  <% @question_comments.each do |comment| %>
+  <article>
+    <p>
+      <%= comment.body %> </br>
+      by <%= comment.user.username %>
+    </p>
+  </article>
+  <% end%>
+  <% end %>
+
+  <% if logged_in? %>
+    <a href="/questions/<%= @question.id %>/comments/new">Comment</a>
+  <% end %>
 </article>
 <% if logged_in? %>
 <form action="/answers" method="post">
@@ -21,7 +35,17 @@
   <p>
     <%= answer.body %> </br>
     by <%= answer.user.username %>
+    <% if answer.comments %>
+    <% answer.comments.each do |comment| %>
+    <ul>
+      <li><%= comment.body %> - by <%= comment.user.username %></li>
+    </ul>
+    <% end %>
+    <% end %>
   </p>
+  <% if logged_in? %>
+    <a href="/answers/<%= answer.id %>/comments/new">Comment</a>
+  <% end %>
 </article>
 <% end%>
 <% end %>
