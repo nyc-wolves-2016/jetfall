@@ -23,9 +23,11 @@
       <% if logged_in? %>
       <li><%= current_user.username %></li>
       <li><a href="/logout">Logout</a></li>
+      <li><a href="/">Home</a></li>
       <% else %>
       <li><a href="/register">Register</a></li>
       <li><a href="/login">Login</a></li>
+      <li><a href="/">Home</a></li>
       <% end %>
     </ul>
   </nav>

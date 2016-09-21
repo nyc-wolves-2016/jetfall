@@ -1,5 +1,5 @@
 <h1><%= @question.title %></h1>
-
+<%= erb(:_errors) %>
 <article>
   <p>
     <%= @question.points %> points </br>
@@ -7,12 +7,13 @@
     <%= @question.body %>
   </p>
 </article>
-
+<% if logged_in? %>
 <form action="/answers" method="post">
   <input type="text" name="answer[body]" placeholder="Put your answer details here!"></br>
   <input type = "hidden" name="answer[question_id]" value="<%= @question.id %>">
   <input type="submit" class="button" value="Submit">
 </form>
+<% end %>
 
 <% if @answers %>
 <% @answers.each do |answer| %>

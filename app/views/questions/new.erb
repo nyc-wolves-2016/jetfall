@@ -1,10 +1,4 @@
-<% if @errors %>
-<ul>
-<% @errors.each do |error| %>
-<li><%= error %></li>
-</ul>
-<% end %>
-<% end %>
+<%= erb(:_errors) %>
 
 <form action="/questions" method="post">
   <input type="text" name="question[title]" placeholder="Question Title"></br>
