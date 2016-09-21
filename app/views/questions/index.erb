@@ -1,0 +1,17 @@
+<h1>Top Questions</h1>
+<div class="question-container">
+  <% @questions.each do |question| %>
+    <hr>
+    <article id="<%= question.id %>">
+      <h2>
+        <a href="/questions/<%= question.id %>"><%= question.title %></a>
+      </h2>
+      <p>
+        <span>Asked by <%= question.user.username %></span>
+        <span><%= question.total_votes %> Votes</span>
+        <span><%= question.total_answers %> Answers</span>
+        <span><%= "Asked on #{long_form_date(question.created_at)}" %></span>
+      </p>
+    </article>
+  <% end %>
+</div>
