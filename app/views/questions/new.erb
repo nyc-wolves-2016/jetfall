@@ -1,0 +1,14 @@
+<% if @errors %>
+<ul>
+<% @errors.each do |error| %>
+<li><%= error %></li>
+</ul>
+<% end %>
+<% end %>
+
+<form action="/questions" method="post">
+  <input type="text" name="question[title]" placeholder="Question Title"></br>
+  <input type="text" name="question[body]" placeholder="Put your question details here!"></br>
+
+  <input type="submit" class="button" value="Submit">
+</form>
