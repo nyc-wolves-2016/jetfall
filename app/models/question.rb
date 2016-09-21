@@ -11,4 +11,12 @@ class Question < ActiveRecord::Base
     too_long: "%{count} characters is the maximum allowed" }
   validates :body, length: { maximum: 500,
     too_long: "%{count} characters is the maximum allowed" }
+
+  def total_votes
+    self.votes.count
+  end
+
+  def total_answers
+    self.answers.count
+  end
 end
