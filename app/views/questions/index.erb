@@ -3,15 +3,25 @@
   <% @questions.each do |question| %>
     <hr>
     <article id="<%= question.id %>">
-      <h2>
-        <a href="/questions/<%= question.id %>"><%= question.title %></a>
-      </h2>
-      <p>
-        <span>Asked by <%= question.user.username %></span>
-        <span><%= question.total_votes %> Votes</span>
-        <span><%= question.total_answers %> Answers</span>
-        <span><%= "Asked on #{long_form_date(question.created_at)}" %></span>
-      </p>
+
+    <div class="stat-container">
+      <div class="stat">
+        <div class="count">
+          <span><%= question.total_votes %></span>
+        </div>
+        <div class="mini-label">votes</div>
+      </div>
+      <div class="stat">
+        <div class="count">
+          <span><%= question.total_answers %></span>
+        </div>
+        <div class="mini-label">answers</div>
+      </div>
+    </div>
+
+      <!-- <ul class="question">
+        <li><a href="/questions/<%= question.id %>"><%= question.title %></a><br><%= "Asked #{long_form_date(question.created_at)}" %> <%= question.user.username %></li>
+      </ul> -->
     </article>
   <% end %>
 </div>

@@ -26,6 +26,26 @@ main {
   padding: 0px 30px 0px 30px;
 }
 
+div.stat-container {
+
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+div.stat {
+  display: inline-block;
+  text-align: center;
+}
+
+div.count {
+  font-size: 20px;
+}
+
+div.mini-label {
+  font-size-adjust: 
+}
+
 
 @media screen and (max-width: 600px){
     ul.topnav li.right,
