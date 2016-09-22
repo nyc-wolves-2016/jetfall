@@ -25,6 +25,26 @@ $(document).ready(function() {
     });
   });
 
+  $(".best-answer-comment-link").click(function(event){
+    event.preventDefault();
+    $(this).hide();
+    $(".new_best_answer_comment_form").removeClass("hidden");
+  });
+
+  $('.best-answer-container').on('submit', '.new_best_answer_comment_form', function(event) {
+    event.preventDefault();
+    var comment = $(this).serialize();
+    $.ajax({
+      url: "/comments",
+      method: "POST",
+      data: comment
+    }).done(function(response){
+      $(event.target).parent().find(".best_answer_comments").append(response);
+      $(".new_best_answer_comment_form").addClass("hidden");
+      $(".best-answer-comment-link").show();
+    });
+  });
+
   $(".answer-comment-link").click(function(event){
     event.preventDefault();
     $(this).hide();

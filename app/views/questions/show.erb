@@ -40,7 +40,8 @@
 <% if @answers %>
   <% if @best_answer %>
 
-<article>
+<article class="best-answer-container">
+
   <p>
     <%= @best_answer.body %></br>
     by <%= @best_answer.user.username %>
@@ -49,6 +50,26 @@
 
 <% end %>
 <% end %>
+
+
+<% if logged_in? %>
+  <a class="best-answer-comment-link" href="/answers/<%= @best_answer.id %>/comments/new">Comment</a>
+  <form action="/comments" method="post" class="hidden new_best_answer_comment_form">
+    <input class="best-answer-comment" type="text" name="body" placeholder="Put your comment here!"></br>
+    <input type = "hidden" name="commentable_id" value="<%= @best_answer.id %>">
+    <input type = "hidden" name="commentable_type" value="<%= @best_answer.class %>">
+    <input type="submit" class="button" value="Submit">
+  </form>
+<% end %>
+<% if @best_answer.comments %>
+<ul class="best_answer_comments">
+<% @best_answer.comments.order(created_at: :asc).each do |comment| %>
+  <%= erb :'/comments/_comment', locals: {comment: comment}, layout: false %>
+<% end %>
+</ul>
+
+<% end %>
+  <% end %>
 
 <div id="answer-container" class="answer-container">
   <% @answers.each do |answer| %>
