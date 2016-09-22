@@ -63,7 +63,7 @@ $(document).ready(function() {
       data: comment
     }).done(function(response){
       $(event.target).parent().find(".answer_comments").append(response);
-      form.val("");
+      $("form").val("");
       $(".new_answer_comment_form").addClass("hidden");
       $(".answer-comment-link").show();
     });
