@@ -23,7 +23,7 @@
   <% end %>
 
   <% if logged_in? %>
-    <a href="/questions/<%= @question.id %>/comments/new">Comment</a>
+    <a class="comment-link" href="/questions/<%= @question.id %>/comments/new">Comment</a>
   <% end %>
 </article>
 
@@ -71,7 +71,7 @@
     <% end %>
   </p>
   <% if logged_in? %>
-    <a href="/answers/<%= answer.id %>/comments/new">Comment</a>
+    <a class="comment-link" href="/answers/<%= answer.id %>/comments/new">Comment</a>
   <% end %>
 </article>
 <% end%>
