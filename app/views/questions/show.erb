@@ -11,19 +11,19 @@
     <b>body:</b>
     <%= @question.body %>
   </p>
+  <% if logged_in? %>
+    <a class="question-comment-link" href="/questions/<%= @question.id %>/comments/new">Comment</a>
+    <span><%= erb :'_new_question_comment', locals: {comment: comment}%></span>
+  <% end %>
   <% if @question_comments %>
   <% @question_comments.each do |comment| %>
-  <article>
-    <p>
+  <article class="question_comments">
+    <p class="comment">
       <%= comment.body %> </br>
       by <%= comment.user.username %>
     </p>
   </article>
   <% end%>
-  <% end %>
-
-  <% if logged_in? %>
-    <a class="comment-link" href="/questions/<%= @question.id %>/comments/new">Comment</a>
   <% end %>
 </article>
 
@@ -36,14 +36,19 @@
 <% end %>
 
 <% if @answers %>
-<% if @best_answer %>
+  <% if @best_answer %>
+
 <article>
   <p>
     <%= @best_answer.body %></br>
     by <%= @best_answer.user.username %>
   </p>
 </article>
+
 <% end %>
+
+
+  <% end %>
 
 <% @answers.each do |answer| %>
 <article>

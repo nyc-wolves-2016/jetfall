@@ -1,6 +1,6 @@
 get '/questions/:id/comments/new' do
   @question = Question.find(params[:id])
-  erb :'comments/new_question_comment'
+  erb :'comments/_new_question_comment'
 end
 
 get '/answers/:id/comments/new' do
