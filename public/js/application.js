@@ -8,10 +8,10 @@ $(document).ready(function() {
   $(".question-comment-link").click(function(event){
     event.preventDefault();
     $(this).hide();
-    $("#new_comment_form").removeClass("hidden");
+    $("#new_question_comment_form").removeClass("hidden");
   });
 
-  $("#new_comment_form").submit(function(event) {
+  $('.question-container').on('submit', '#new_question_comment_form', function(event) {
     event.preventDefault();
     var comment = $(this).serialize();
     $.ajax({
@@ -19,9 +19,36 @@ $(document).ready(function() {
       method: "POST",
       data: comment
     }).done(function(response){
-      $(".comments").last().append(response);
-      $("#new_comment_form").addClass("hidden");
+      $(event.target).parent().find(".question_comments").append(response);
+      $("#new_question_comment_form").addClass("hidden");
       $(".question-comment-link").show();
     });
   });
+
+  $(".answer-comment-link").click(function(event){
+    event.preventDefault();
+    $(this).hide();
+    $(this).parent().find(".new_answer_comment_form").removeClass("hidden");
+
+  });
+
+  $("#answer-container").on("submit", ".new_answer_comment_form", function(event) {
+    event.preventDefault();
+    var comment = $(this).serialize();
+    var answer_id = $(this).closest("article").attr("id");
+    $(this).find(".answer-comment").val("")
+    $.ajax({
+      url: "/comments",
+      method: "POST",
+      data: comment
+    }).done(function(response){
+      $(event.target).parent().find(".answer_comments").append(response);
+      form.val("");
+      $(".new_answer_comment_form").addClass("hidden");
+      $(".answer-comment-link").show();
+    });
+
+  });
+
+
 });

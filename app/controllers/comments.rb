@@ -31,7 +31,11 @@ post '/comments' do
     if comment.save
       comment.user = current_user
       comment.save
-      redirect "/questions/#{question_id}"
+      if request.xhr?
+        erb :'/comments/_comment', locals: {comment: comment}, layout: false
+      else
+        redirect "/questions/#{question_id}"
+      end
     else
       @errors = comment.errors.full_messages
       erb :'comments/new'
