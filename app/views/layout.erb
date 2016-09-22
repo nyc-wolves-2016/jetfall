@@ -19,7 +19,7 @@
 </head>
 <body>
   <nav>
-    <ul>
+    <ul class="topnav">
       <% if logged_in? %>
       <li><%= current_user.username %></li>
       <li><a href="/logout">Logout</a></li>
@@ -31,6 +31,9 @@
       <% end %>
     </ul>
   </nav>
+  <main>
+  <h1>Jetfall</h1>
   <%= yield %>
+  </main>
 </body>
 </html>
