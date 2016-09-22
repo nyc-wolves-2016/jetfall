@@ -1,7 +1,7 @@
 <h3>Top Questions</h3>
-<div class="question-container">
+<div class="questions-container">
   <% @questions.each do |question| %>
-    <hr>
+
     <article id="<%= question.id %>">
 
     <div class="stat-container">
@@ -19,9 +19,21 @@
       </div>
     </div>
 
-      <!-- <ul class="question">
-        <li><a href="/questions/<%= question.id %>"><%= question.title %></a><br><%= "Asked #{long_form_date(question.created_at)}" %> <%= question.user.username %></li>
-      </ul> -->
+    <div class="question">
+
+      <div class="question-details">
+        <div class="question-text">
+          <span><a href="/questions/<%= question.id %>"><%= question.title %></a><span>
+        </div>
+      </div>
+
+      <div class="question-details">
+        <div class="question-info">
+          <span><%= "Asked on #{long_form_date(question.created_at)}" %><%= question.user.username %></span>
+        </div>
+      </div>
+
+    </div>
     </article>
   <% end %>
 </div>
