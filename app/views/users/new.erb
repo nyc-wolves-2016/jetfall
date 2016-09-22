@@ -1,11 +1,13 @@
 <%= erb(:_errors) %>
 
-<form class="" action="/register" method="post">
-  <fieldset>
-    <legend>Register</legend>
-    <input type="text" name="user[username]" placeholder="Username">
-    <input type="email" name="user[email]" placeholder="Email Address">
-    <input type="password" name="user[password]" placeholder="Password">
-    <input type="submit" value="Register">
-  </fieldset>
-</form>
+<div id="register">
+  <form id="register-form" action="/register" method="post">
+      <label class="register">Username</label>
+      <input class="full-length" type="text" name="user[username]" placeholder="J. Doe">
+      <label class="register">Email Address</label>
+      <input class="full-length" type="email" name="user[email]" placeholder="you@example.org">
+      <label class="register">Password</label>
+      <input class="full-length" type="password" name="user[password]" placeholder="*********">
+      <input id="styled-button" type="submit" value="Register">
+  </form>
+</div>

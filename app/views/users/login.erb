@@ -1,10 +1,11 @@
 <%= erb(:_errors) %>
 
-<form id="login-form" action="/login" method="post">
-  <fieldset>
-    <legend>Log In</legend>
-    <input type="email" name="user[email]" placeholder="Email Address">
-    <input type="password" name="user[password]" placeholder="Password">
-    <input type="submit" value="Sign In">
-  </fieldset>
-</form>
+<div id='login'>
+  <form id="login-form" action="/login" method="post">
+      <label class="login">Email</label>
+      <input class="full-length" type="email" name="user[email]" placeholder="you@example.org">
+      <label class="login">Password</label>
+      <input class="full-length" type="password" name="user[password]" placeholder="Password">
+      <input id="styled-button" type="submit" value="Sign In">
+  </form>
+</div>

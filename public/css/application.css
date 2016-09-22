@@ -135,21 +135,55 @@ div.question-author {
   display: none;
 }
 
+#login {
+  display: flex;
+  width: 100%;
+  font-size: 18px;
+}
+
 #login-form {
-  display: block;
-  margin: 0;
+  width: 50%;
+  margin: auto;
 }
 
-input[type=email] {
-
+#register {
+  display: flex;
+  width: 100%;
+  font-size: 18px;
 }
 
-input[type=password] {
-
+#register-form {
+  width: 50%;
+  margin: auto;
 }
 
-input[type=button] {
+form input.full-length {
+  box-sizing: border-box;
+  margin: 5px 0;
+  width: 100%;
+  padding: 10px;
+}
 
+label.login {
+  padding: 10px 0px 10px 0px;
+}
+
+label.register {
+  padding: 10px 0px 10px 0px;
+}
+
+input[type=submit] {
+  background-color: #0095FF;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 20px;
+  width: 70%;
+  text-align: center;
+}
+
+#styled-button {
+  margin-left: 15%;
 }
 
 @media screen and (max-width:860px) {
