@@ -1,5 +1,8 @@
 <div class="flex-item" >
-  <h3>Top Questions</h3>
+  <div id="section-top">
+    <h3>Top Questions</h3>
+    <div id="new-question"><a href="/questions/new">Ask a new question</a></div>
+  </div>
   <% @questions.each do |question| %>
     <article id="<%= question.id %>" class="flex-item">
     <div class="metrics-container">

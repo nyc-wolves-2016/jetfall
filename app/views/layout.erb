@@ -32,16 +32,16 @@
   <nav>
     <ul class="topnav" id="myTopnav">
       <% if logged_in? %>
-      <li><a class="active" href="/">Home</a></li>
-      <li><%= current_user.username %></li>
-      <li><a href="/logout">Logout</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href=""><%= current_user.username %></a></li>
+        <li><a class="active" href="/">Home</a></li>
       <li class="icon">
         <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
       </li>
       <% else %>
-      <li><a class="active" href="/">Home</a></li>
-      <li><a href="/register">Register</a></li>
-      <li><a href="/login">Login</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a class="active" href="/">Home</a></li>
       <li class="icon">
         <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
       </li>
