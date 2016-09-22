@@ -15,26 +15,43 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+          x.className += " responsive";
+      } else {
+          x.className = "topnav";
+      }
+    }
+  </script>
+
+  <title>Jetfall</title>
 </head>
 <body>
   <nav>
-    <ul class="topnav">
+    <ul class="topnav" id="myTopnav">
       <% if logged_in? %>
+      <li><a class="active" href="/">Home</a></li>
       <li><%= current_user.username %></li>
       <li><a href="/logout">Logout</a></li>
-      <li><a href="/">Home</a></li>
+      <li class="icon">
+        <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
+      </li>
       <% else %>
+      <li><a class="active" href="/">Home</a></li>
       <li><a href="/register">Register</a></li>
       <li><a href="/login">Login</a></li>
-      <li><a href="/">Home</a></li>
+      <li class="icon">
+        <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
+      </li>
       <% end %>
     </ul>
   </nav>
   <div class="logo-container">
     <img class="logo-img" src="http://simpleicon.com/wp-content/uploads/rocket.png" alt="Jetfall"><span class="logo-text">Jetfall</span>
   </div>
-  <main>
+  <main class="flex-container">
   <%= yield %>
   </main>
 </body>

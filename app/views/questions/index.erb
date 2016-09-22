@@ -1,10 +1,8 @@
 <h3>Top Questions</h3>
-<div class="questions-container">
+<div class="flex-item" >
   <% @questions.each do |question| %>
-
-    <article id="<%= question.id %>">
-
-    <div class="stat-container">
+    <article id="<%= question.id %>" class="flex-item">
+    <div class="metrics-container">
       <div class="stat">
         <div class="count">
           <span><%= question.total_votes %></span>
@@ -18,22 +16,18 @@
         <div class="mini-label">answers</div>
       </div>
     </div>
-
-    <div class="question">
-
-      <div class="question-details">
+    <div class="question-details-container">
         <div class="question-text">
           <span><a href="/questions/<%= question.id %>"><%= question.title %></a><span>
         </div>
-      </div>
-
-      <div class="question-details">
-        <div class="question-info">
-          <span><%= "Asked on #{long_form_date(question.created_at)}" %><%= question.user.username %></span>
+        <div class="question-date">
+          <span><%= "Asked on #{long_form_date(question.created_at)}" %></span>
         </div>
-      </div>
-
+        <div class="question-author">
+          <span><%= question.user.username %></span>
+        </div>
     </div>
     </article>
   <% end %>
 </div>
+<img id="advert" src="/images/advertisement.png" alt="ad" />
