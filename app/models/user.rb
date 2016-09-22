@@ -11,21 +11,31 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  def upvote(question)
-    self.votes.new(value: 1, votable: question).save
+  def upvote(votable)
+    vote_object = self.votes.find_by(votable: votable)
+    if vote_object
+      vote_object.update_attributes(value: 1)
+    else
+      self.votes.new(value: 1, votable: votable).save
+    end
   end
 
-  def downvote(question)
-    self.votes.new(value: -1, votable: question).save
+  def downvote(votable)
+    vote_object = self.votes.find_by(votable: votable)
+    if vote_object
+      vote_object.update_attributes(value: -1)
+    else
+      self.votes.new(value: -1, votable: votable).save
+    end
   end
 
-  def upvote_for?(question)
-    vote_object = self.votes.find_by(votable: question)
+  def upvote_for?(votable)
+    vote_object = self.votes.find_by(votable: votable)
     vote_object.value == 1 if vote_object
   end
 
-  def downvote_for?(question)
-    vote_object = self.votes.find_by(votable: question)
+  def downvote_for?(votable)
+    vote_object = self.votes.find_by(votable: votable)
     vote_object.value == -1 if vote_object
   end
 end
