@@ -1,9 +1,14 @@
 <h1><%= @question.title %></h1>
+
 <%= erb(:_errors) %>
+
 <article>
   <p>
+    <a href="/questions/<%= @question.id %>/upvote">Upvote</a></br>
     <%= @question.points %> points </br>
+    <a href="/questions/<%= @question.id %>/downvote">Downvote</a></br>
     by <%= @author.username %> </br>
+    <b>body:</b>
     <%= @question.body %>
   </p>
   <% if @question_comments %>
@@ -21,6 +26,7 @@
     <a href="/questions/<%= @question.id %>/comments/new">Comment</a>
   <% end %>
 </article>
+
 <% if logged_in? %>
 <form action="/answers" method="post">
   <input type="text" name="answer[body]" placeholder="Put your answer details here!"></br>
