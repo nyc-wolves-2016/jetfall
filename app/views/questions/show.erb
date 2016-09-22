@@ -2,7 +2,7 @@
 
 <%= erb(:_errors) %>
 
-<article>
+<article class='question-container'>
   <p>
     <a href="/questions/<%= @question.id %>/upvote">Upvote</a></br>
     <%= @question.points %> points </br>
@@ -11,19 +11,21 @@
     <b>body:</b>
     <%= @question.body %>
   </p>
-  <% if @question_comments %>
-  <% @question_comments.each do |comment| %>
-  <article>
-    <p>
-      <%= comment.body %> </br>
-      by <%= comment.user.username %>
-    </p>
-  </article>
-  <% end%>
-  <% end %>
-
   <% if logged_in? %>
-    <a href="/questions/<%= @question.id %>/comments/new">Comment</a>
+    <a class="question-comment-link" href="/questions/<%= @question.id %>/comments/new">Comment</a>
+    <form id="new_question_comment_form" action="/comments" method="post" class="hidden">
+      <input type="text" name="body" placeholder="Put your comment here!"></br>
+      <input type = "hidden" name="commentable_id" value="<%= @question.id %>">
+      <input type = "hidden" name="commentable_type" value="<%= @question.class %>">
+      <input type="submit" class="button" value="Submit">
+    </form>
+  <% end %>
+  <% if @question_comments %>
+  <ul class="question_comments">
+  <% @question_comments.each do |comment| %>
+    <%= erb :'/comments/_comment', locals: {comment: comment}, layout: false %>
+  <% end%>
+  </ul>
   <% end %>
 </article>
 
@@ -36,43 +38,75 @@
 <% end %>
 
 <% if @answers %>
-<% if @best_answer %>
-<article>
+  <% if @best_answer %>
+
+<article class="best-answer-container">
+
   <p>
     <%= @best_answer.body %></br>
     by <%= @best_answer.user.username %>
   </p>
 </article>
+
+<% end %>
 <% end %>
 
-<% @answers.each do |answer| %>
-<article>
-  <p>
 
-    <%= answer.body %> </br>
-    <a href="/answers/<%= answer.id %>/upvote">Upvote</a></br>
-    <%= answer.points %> points </br>
-    <a href="/answers/<%= answer.id %>/downvote">Downvote</a></br>
-    <b>by <%= answer.user.username %></b>
-    <% if current_user.id == answer.question.user.id %>
-      <form action="/question/<%= answer.question.id %>/best" method="post">
-        <input type="hidden" name="answer_id" value="<%= answer.id %>">
-        <input type="submit" class="button" value="Best Answer">
-      </form>
-    <% end %>
+<% if logged_in? %>
+  <a class="best-answer-comment-link" href="/answers/<%= @best_answer.id %>/comments/new">Comment</a>
+  <form action="/comments" method="post" class="hidden new_best_answer_comment_form">
+    <input class="best-answer-comment" type="text" name="body" placeholder="Put your comment here!"></br>
+    <input type = "hidden" name="commentable_id" value="<%= @best_answer.id %>">
+    <input type = "hidden" name="commentable_type" value="<%= @best_answer.class %>">
+    <input type="submit" class="button" value="Submit">
+  </form>
+<% end %>
+<% if @best_answer.comments %>
+<ul class="best_answer_comments">
+<% @best_answer.comments.order(created_at: :asc).each do |comment| %>
+  <%= erb :'/comments/_comment', locals: {comment: comment}, layout: false %>
+<% end %>
+</ul>
 
-    <% if answer.comments %>
-    <% answer.comments.order(created_at: :asc).each do |comment| %>
-    <ul>
-      <li><a href="/comments/<%= comment.id %>/upvote">Upvote</a> <%= comment.points %> points
-        <a href="/comments/<%= comment.id %>/downvote">Downvote</a> <%= comment.body %> - by <%= comment.user.username %></li>
-    </ul>
-    <% end %>
-    <% end %>
-  </p>
-  <% if logged_in? %>
-    <a href="/answers/<%= answer.id %>/comments/new">Comment</a>
+<% end %>
   <% end %>
-</article>
-<% end%>
+
+<div id="answer-container" class="answer-container">
+  <% @answers.each do |answer| %>
+    <article id="<%= answer.id %>">
+      <%= answer.body %> </br>
+      <a href="/answers/<%= answer.id %>/upvote">Upvote</a></br>
+      <%= answer.points %> points </br>
+      <a href="/answers/<%= answer.id %>/downvote">Downvote</a></br>
+      <b>by <%= answer.user.username %></b>
+
+      <% if current_user.id == answer.question.user.id %>
+        <form action="/question/<%= answer.question.id %>/best" method="post">
+          <input type="hidden" name="answer_id" value="<%= answer.id %>">
+          <input type="submit" class="button" value="Best Answer">
+        </form>
+      <% end %>
+
+      <% if logged_in? %>
+        <a class="answer-comment-link" href="/answers/<%= answer.id %>/comments/new">Comment</a>
+        <form action="/comments" method="post" class="hidden new_answer_comment_form">
+          <input class="answer-comment" type="text" name="body" placeholder="Put your comment here!"></br>
+          <input type = "hidden" name="commentable_id" value="<%= answer.id %>">
+          <input type = "hidden" name="commentable_type" value="<%= answer.class %>">
+          <input type="submit" class="button" value="Submit">
+        </form>
+      <% end %>
+
+      <% if answer.comments %>
+      <ul class="answer_comments">
+      <% answer.comments.order(created_at: :asc).each do |comment| %>
+        <%= erb :'/comments/_comment', locals: {comment: comment}, layout: false %>
+      <% end %>
+      </ul>
+
+    <% end %>
+  </article>
+
+  <% end%>
+  </div>
 <% end %>
