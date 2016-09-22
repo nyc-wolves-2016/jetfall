@@ -1,17 +1,33 @@
 <h3>Top Questions</h3>
-<div class="question-container">
+<div class="flex-item" >
   <% @questions.each do |question| %>
-    <hr>
-    <article id="<%= question.id %>">
-      <h2>
-        <a href="/questions/<%= question.id %>"><%= question.title %></a>
-      </h2>
-      <p>
-        <span>Asked by <%= question.user.username %></span>
-        <span><%= question.total_votes %> Votes</span>
-        <span><%= question.total_answers %> Answers</span>
-        <span><%= "Asked on #{long_form_date(question.created_at)}" %></span>
-      </p>
+    <article id="<%= question.id %>" class="flex-item">
+    <div class="metrics-container">
+      <div class="stat">
+        <div class="count">
+          <span><%= question.total_votes %></span>
+        </div>
+        <div class="mini-label">votes</div>
+      </div>
+      <div class="stat">
+        <div class="count">
+          <span><%= question.total_answers %></span>
+        </div>
+        <div class="mini-label">answers</div>
+      </div>
+    </div>
+    <div class="question-details-container">
+        <div class="question-text">
+          <span><a href="/questions/<%= question.id %>"><%= question.title %></a><span>
+        </div>
+        <div class="question-date">
+          <span><%= "Asked on #{long_form_date(question.created_at)}" %></span>
+        </div>
+        <div class="question-author">
+          <span><%= question.user.username %></span>
+        </div>
+    </div>
     </article>
   <% end %>
 </div>
+<img id="advert" src="/images/advertisement.png" alt="ad" />
