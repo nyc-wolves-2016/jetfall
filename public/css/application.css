@@ -130,7 +130,8 @@ div.question-author {
 }
 
 @media screen and (max-width:500px) {
-  ul.topnav li:not(:first-child) {display: none;}
+  ul.topnav li {display: none;}
+  ul.topnav li:nth-last-child(2){display: block;}
   ul.topnav li {float: left;}
   ul.topnav li.icon {
     float: right;
