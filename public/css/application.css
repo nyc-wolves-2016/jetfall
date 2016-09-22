@@ -22,6 +22,11 @@ ul.topnav li a:hover {background-color: #555;}
 
 ul.topnav li.icon {display: none;}
 
+main {
+  padding: 0px 30px 0px 30px;
+}
+
+
 @media screen and (max-width: 600px){
     ul.topnav li.right,
     ul.topnav li {float: none;}
