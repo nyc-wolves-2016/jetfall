@@ -36,13 +36,26 @@
 <% end %>
 
 <% if @answers %>
+<article>
+  <p>
+    <%= @best_answer.body %></br>
+    by <%= @best_answer.user.username %>
+  </p>
+</article>
 <% @answers.each do |answer| %>
 <article>
   <p>
     <%= answer.body %> </br>
     by <%= answer.user.username %>
+    <% if current_user.id == answer.question.user.id %>
+      <form action="/question/<%= answer.question.id %>/best" method="post">
+        <input type="hidden" name="answer_id" value="<%= answer.id %>">
+        <input type="submit" class="button" value="Best Answer">
+      </form>
+    <% end %>
+
     <% if answer.comments %>
-    <% answer.comments.each do |comment| %>
+    <% answer.comments.order(created_at: :asc).each do |comment| %>
     <ul>
       <li><%= comment.body %> - by <%= comment.user.username %></li>
     </ul>
