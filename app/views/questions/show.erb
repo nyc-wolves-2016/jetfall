@@ -2,7 +2,7 @@
 
 <%= erb(:_errors) %>
 
-<article>
+<article class='question-container'>
   <p>
     <a href="/questions/<%= @question.id %>/upvote">Upvote</a></br>
     <%= @question.points %> points </br>
@@ -13,16 +13,16 @@
   </p>
   <% if logged_in? %>
     <a class="question-comment-link" href="/questions/<%= @question.id %>/comments/new">Comment</a>
-    <span><%= erb :'_new_question_comment', locals: {comment: comment}%></span>
+    <form id="new_comment_form" action="/comments" method="post" class="hidden">
+      <input type="text" name="body" placeholder="Put your comment here!"></br>
+      <input type = "hidden" name="commentable_id" value="<%= @question.id %>">
+      <input type = "hidden" name="commentable_type" value="<%= @question.class %>">
+      <input type="submit" class="button" value="Submit">
+    </form>
   <% end %>
   <% if @question_comments %>
   <% @question_comments.each do |comment| %>
-  <article class="question_comments">
-    <p class="comment">
-      <%= comment.body %> </br>
-      by <%= comment.user.username %>
-    </p>
-  </article>
+    <%= erb :'/comments/_comment', locals: {comment: comment}, layout: false %>
   <% end%>
   <% end %>
 </article>
@@ -32,7 +32,6 @@
   <input type="text" name="answer[body]" placeholder="Put your answer details here!"></br>
   <input type = "hidden" name="answer[question_id]" value="<%= @question.id %>">
   <input type="submit" class="button" value="Submit">
-</form>
 <% end %>
 
 <% if @answers %>

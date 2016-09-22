@@ -1,6 +1,6 @@
 get '/questions/:id/comments/new' do
   @question = Question.find(params[:id])
-  erb :'comments/_new_question_comment'
+  erb :'comments/new_question_comment'
 end
 
 get '/answers/:id/comments/new' do
@@ -16,7 +16,11 @@ post '/comments' do
     if comment.save
       comment.user = current_user
       comment.save
-      redirect "/questions/#{question_id}"
+      if request.xhr?
+        erb :'/comments/_comment', locals: {comment: comment}, layout: false
+      else
+        redirect "/questions/#{question_id}"
+      end
     else
       @errors = comment.errors.full_messages
       erb :'comments/new'
