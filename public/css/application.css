@@ -271,4 +271,35 @@ a:focus { outline: none;-moz-outline-style: none;}
   margin-bottom: 30px;
   margin-right: auto;
   margin-left: 0;
+  width: 100%;
+  border: 1px solid black;
+  padding: 20px;
 }
+
+.upvote { color: orange; text-decoration: none; }
+
+.upvote span { display: none; }
+
+.upvote:after { content: '⬆'; }
+
+.downvote { color: lightblue; text-decoration: none; }
+
+.downvote span { display: none; }
+
+.downvote:after { content: '⬇'; }
+
+.points-count { position: relative; bottom: 2px; color: #999; font-size: 12px;
+
+}
+
+.question_comments li { list-style: none; border-bottom: 1px solid #ccc; padding: 4px; }
+
+.best-answer-comments li { list-style: none; border-bottom: 1px solid #ccc; padding: 4px; }
+
+.answer_comments li { list-style: none; border-bottom: 1px solid #ccc; padding: 4px; }
+
+.ballot { width: 100px; padding-left: 10px; float: right; }
+
+.comment-body cite{ color: gray; font-size: 12px; }
+
+.comment-body cite:before{ content: " - "; }
