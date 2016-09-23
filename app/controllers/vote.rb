@@ -3,7 +3,11 @@ get '/questions/:id/upvote' do
   if !upvoted?(question)
     upvoteRemoveDownvote(question)
   end
-  redirect "/questions/#{params[:id]}"
+  if request.xhr?
+    question.points.to_json
+  else
+    redirect "/questions/#{params[:id]}"
+  end
 end
 
 get '/questions/:id/downvote' do

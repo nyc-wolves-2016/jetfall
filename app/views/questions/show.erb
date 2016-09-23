@@ -8,6 +8,11 @@
       <a class="upvote" href="/questions/<%= @question.id %>/upvote"><span>Upvote</span></a></br>
     <% end %>
   <span class="points-count"><%= @question.points %> points</span> </br>
+
+      <a class="upvote" href="/questions/<%= @question.id %>/upvote">Upvote</a></br>
+    <% end %>
+      <span id="<%= @question.id %>"><%= @question.points %> points </span></br>
+
     <% if logged_in? %>
       <a class="downvote" href="/questions/<%= @question.id %>/downvote"><span>Downvote</span></a></br>
     <% end %>
