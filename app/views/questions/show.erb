@@ -7,11 +7,8 @@
     <% if logged_in? %>
       <a class="upvote" href="/questions/<%= @question.id %>/upvote"><span>Upvote</span></a></br>
     <% end %>
-  <span class="points-count"><%= @question.points %> points</span> </br>
 
-      <a class="upvote" href="/questions/<%= @question.id %>/upvote">Upvote</a></br>
-    <% end %>
-      <span id="<%= @question.id %>"><%= @question.points %> points </span></br>
+      <span id="<%= @question.id %>" class="points-count"><%= @question.points %> points </span></br>
 
     <% if logged_in? %>
       <a class="downvote" href="/questions/<%= @question.id %>/downvote"><span>Downvote</span></a></br>
@@ -32,25 +29,20 @@
   <% if @question_comments %>
   <ul class="question_comments">
   <% @question_comments.each do |comment| %>
-    <li>
+    <li id="<% comment.id %>">
       <div class="ballot">
       <% if logged_in? %>
         <a class="upvote" href="/comments/<%= comment.id %>/upvote"><span>Upvote</span></a>
       <% end %>
-        <span class="points-count"><%= comment.points %> points</span>
-    <li id="<% comment.id %>">
-      <% if logged_in? %>
-        <a class="upvote" href="/comments/<%= comment.id %>/upvote">Upvote</a>
-      <% end %>
-      <span id="<%= comment.id %>"><%= comment.points %> points</span>
+
+      <span id="<%= comment.id %>" class="points-count"><%= comment.points %> points</span>
+
       <% if logged_in? %>
         <a class="downvote" href="/comments/<%= comment.id %>/downvote"><span>Downvote</span></a>
       </div>
       <% end %>
     <div class="comment-body"><%= comment.body %><cite>by <%= comment.user.username %></cite></div>
   </li>
-    <%= comment.body %> - by <%= comment.user.username %>
-    </li>
   <% end %>
   </ul>
   <% end%>
@@ -115,11 +107,11 @@
     <article id="<%= answer.id %>">
       <%= answer.body %> </br>
       <% if logged_in? %>
-        <a href="/answers/<%= answer.id %>/upvote">Upvote</a></br>
+        <a class="upvote" href="/answers/<%= answer.id %>/upvote"><span>Upvote</span></a></br>
       <% end %>
-      <%= answer.points %> points </br>
+      <span class="points-count"><%= answer.points %> points</span> </br>
       <% if logged_in? %>
-        <a href="/answers/<%= answer.id %>/downvote">Downvote</a></br>
+        <a class="downvote" href="/answers/<%= answer.id %>/downvote"><span>Downvote</span></a></br>
       <% end %>
       <b>by <%= answer.user.username %></b>
 
