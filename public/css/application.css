@@ -198,6 +198,11 @@ label.question {
 }
 
 input[type=submit] {
+
+}
+
+#styled-button {
+  margin-left: 15%;
   background-color: #0095FF;
   border: none;
   border-radius: 5px;
@@ -205,10 +210,6 @@ input[type=submit] {
   padding: 20px;
   width: 70%;
   text-align: center;
-}
-
-#styled-button {
-  margin-left: 15%;
 }
 
 @media screen and (max-width:860px) {
@@ -253,3 +254,21 @@ a:active { text-decoration: underline; color: #0095FF; border: 0px; -moz-outline
 a:visited { text-decoration: none; color: #0095FF; border: 0px; -moz-outline-style: none;}
 a:hover { text-decoration: underline; color : #000; border: 0px; -moz-outline-style: none;}
 a:focus { outline: none;-moz-outline-style: none;}
+
+.best-answer-container {
+  width: 100%;
+}
+
+.best-answer-comments {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  margin-left: 10px;
+  list-style-type: none;
+}
+
+.answer-box {
+  margin-bottom: 30px;
+  margin-right: auto;
+  margin-left: 0;
+}
