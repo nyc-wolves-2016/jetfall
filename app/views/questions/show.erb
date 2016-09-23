@@ -5,11 +5,11 @@
 <article class='question-container'>
   <p>
     <% if logged_in? %>
-      <a href="/questions/<%= @question.id %>/upvote">Upvote</a></br>
+      <a class="upvote" href="/questions/<%= @question.id %>/upvote"><span>Upvote</span></a></br>
     <% end %>
-      <%= @question.points %> points </br>
+  <span class="points-count"><%= @question.points %> points</span> </br>
     <% if logged_in? %>
-      <a href="/questions/<%= @question.id %>/downvote">Downvote</a></br>
+      <a class="downvote" href="/questions/<%= @question.id %>/downvote"><span>Downvote</span></a></br>
     <% end %>
     by <%= @author.username %> </br>
     <b>body:</b>
@@ -28,14 +28,17 @@
   <ul class="question_comments">
   <% @question_comments.each do |comment| %>
     <li>
+      <div class="ballot">
       <% if logged_in? %>
-        <a href="/comments/<%= comment.id %>/upvote">Upvote</a>
+        <a class="upvote" href="/comments/<%= comment.id %>/upvote"><span>Upvote</span></a>
       <% end %>
-    <%= comment.points %> points
+        <span class="points-count"><%= comment.points %> points</span>
       <% if logged_in? %>
-        <a href="/comments/<%= comment.id %>/downvote">Downvote</a>
+        <a class="downvote" href="/comments/<%= comment.id %>/downvote"><span>Downvote</span></a>
+      </div>
       <% end %>
-    <%= comment.body %> - by <%= comment.user.username %></li>
+    <div class="comment-body"><%= comment.body %><cite>by <%= comment.user.username %></cite></div>
+  </li>
   <% end %>
   </ul>
   <% end%>
@@ -44,9 +47,9 @@
 <% if logged_in? %>
 <div class="answer-box">
   <form action="/answers" method="post">
-    <input type="text" name="answer[body]" placeholder="Put your answer details here!"></br>
+    <input class="full-length" type="text" name="answer[body]" placeholder="Put your answer details here!"></br>
     <input type = "hidden" name="answer[question_id]" value="<%= @question.id %>">
-    <input type="submit" class="button" value="Submit">
+    <input id="styled-button"type="submit" class="button" value="Submit">
   </form>
 </div>
 <% end %>
@@ -60,9 +63,9 @@
     <%= @best_answer.body %>
     </span>
   </br></br>
-  <a href="/answers/<%= @best_answer.id %>/upvote">Upvote</a></br>
-  <%= @best_answer.points %> points </br>
-  <a href="/answers/<%= @best_answer.id %>/downvote">Downvote</a></br>
+  <a class="upvote" href="/answers/<%= @best_answer.id %>/upvote"><span>Upvote</span></a></br>
+    <span class="points-count"><%= @best_answer.points %> points </span></br>
+  <a class="downvote" href="/answers/<%= @best_answer.id %>/downvote"><span>Downvote</span></a></br>
   <b>by <%= @best_answer.user.username %></b>
 </div>
 
@@ -82,10 +85,13 @@
   <% if @best_answer.comments %>
     <ul class="best-answer-comments">
       <% @best_answer.comments.order(created_at: :asc).each do |comment| %>
-        <li><a href="/comments/<%= comment.id %>/upvote">Upvote</a>
-        <%= comment.points %> points
-        <a href="/comments/<%= comment.id %>/downvote">Downvote</a>
-        <%= comment.body %> - by <%= comment.user.username %></li>
+        <li>
+          <div class="ballot">
+          <a class="upvote" href="/comments/<%= comment.id %>/upvote"><span>Upvote</span></a>
+          <span class="points-count"><%= comment.points %> points</span>
+        <a class="downvote" href="/comments/<%= comment.id %>/downvote"><span>Downvote</span></a>
+          </div>
+        <div class="comment-body"><%= comment.body %><cite>by <%= comment.user.username %></cite></div></li>
       <% end %>
       </ul>
   <% end %>
@@ -128,13 +134,19 @@
       <ul class="answer_comments">
       <% answer.comments.order(created_at: :asc).each do |comment| %>
       <% if logged_in? %>
-        <li><a href="/comments/<%= comment.id %>/upvote">Upvote</a>
+        <li>
+          <div class="ballot">
+          <a class="upvote" href="/comments/<%= comment.id %>/upvote"><span>Upvote</span></a>
       <% end %>
-        <%= comment.points %> points
+          <span class="points-count"><%= comment.points %> points</span>
       <% if logged_in? %>
-        <a href="/comments/<%= comment.id %>/downvote">Downvote</a>
+        <a class="downvote" href="/comments/<%= comment.id %>/downvote"><span>Downvote</span></a>
+          </div>
       <% end %>
-        <%= comment.body %> - by <%= comment.user.username %></li>
+        <div class="comment-body">
+          <%= comment.body %><cite>by <%= comment.user.username %></cite>
+        </div>
+        </li>
       <% end %>
       </ul>
 
