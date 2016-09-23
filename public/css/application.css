@@ -157,6 +157,17 @@ div.question-author {
   margin: auto;
 }
 
+#new-question {
+  display: flex;
+  width: 100%;
+  font-size: 18px;
+}
+
+#question-form {
+  width: 50%;
+  margin: auto;
+}
+
 form input.full-length {
   box-sizing: border-box;
   margin: 5px 0;
@@ -164,11 +175,25 @@ form input.full-length {
   padding: 10px;
 }
 
+form textarea {
+  box-sizing: border-box;
+  margin: 5px 0;
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  padding: 10px;
+  height: 200px;
+  vertical-align: top;
+}
+
 label.login {
   padding: 10px 0px 10px 0px;
 }
 
 label.register {
+  padding: 10px 0px 10px 0px;
+}
+
+label.question {
   padding: 10px 0px 10px 0px;
 }
 
