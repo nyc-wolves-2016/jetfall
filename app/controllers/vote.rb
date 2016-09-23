@@ -3,7 +3,11 @@ get '/questions/:id/upvote' do
   if !upvoted?(question)
     upvoteRemoveDownvote(question)
   end
-  redirect "/questions/#{params[:id]}"
+  if request.xhr?
+    question.points.to_json
+  else
+    redirect "/questions/#{params[:id]}"
+  end
 end
 
 get '/questions/:id/downvote' do
@@ -11,7 +15,11 @@ get '/questions/:id/downvote' do
   if !downvoted?(question)
     downvoteRemoveUpvote(question)
   end
-  redirect "/questions/#{params[:id]}"
+  if request.xhr?
+    question.points.to_json
+  else
+    redirect "/questions/#{params[:id]}"
+  end
 end
 
 get '/answers/:id/upvote' do
@@ -35,7 +43,11 @@ get '/comments/:id/upvote' do
   if !upvoted?(comment)
     upvoteRemoveDownvote(comment)
   end
-  redirect "/questions/#{comment.commentable.question.id}"
+  if request.xhr?
+    comment.points.to_json
+  else
+    redirect "/questions/#{comment.commentable.id}"
+  end
 end
 
 get '/comments/:id/downvote' do
@@ -43,5 +55,5 @@ get '/comments/:id/downvote' do
   if !downvoted?(comment)
     downvoteRemoveUpvote(comment)
   end
-  redirect "/questions/#{comment.commentable.question.id}"
+  redirect "/questions/#{comment.commentable.id}"
 end
