@@ -4,9 +4,13 @@
 
 <article class='question-container'>
   <p>
-    <a href="/questions/<%= @question.id %>/upvote">Upvote</a></br>
-    <%= @question.points %> points </br>
-    <a href="/questions/<%= @question.id %>/downvote">Downvote</a></br>
+    <% if logged_in? %>
+      <a href="/questions/<%= @question.id %>/upvote">Upvote</a></br>
+    <% end %>
+      <%= @question.points %> points </br>
+    <% if logged_in? %>
+      <a href="/questions/<%= @question.id %>/downvote">Downvote</a></br>
+    <% end %>
     by <%= @author.username %> </br>
     <b>body:</b>
     <%= @question.body %>
@@ -23,9 +27,14 @@
   <% if @question_comments %>
   <ul class="question_comments">
   <% @question_comments.each do |comment| %>
-    <li><a href="/comments/<%= comment.id %>/upvote">Upvote</a>
+    <li>
+      <% if logged_in? %>
+        <a href="/comments/<%= comment.id %>/upvote">Upvote</a>
+      <% end %>
     <%= comment.points %> points
-    <a href="/comments/<%= comment.id %>/downvote">Downvote</a>
+      <% if logged_in? %>
+        <a href="/comments/<%= comment.id %>/downvote">Downvote</a>
+      <% end %>
     <%= comment.body %> - by <%= comment.user.username %></li>
   <% end %>
   </ul>
@@ -87,9 +96,13 @@
   <% @answers.each do |answer| %>
     <article id="<%= answer.id %>">
       <%= answer.body %> </br>
-      <a href="/answers/<%= answer.id %>/upvote">Upvote</a></br>
+      <% if logged_in? %>
+        <a href="/answers/<%= answer.id %>/upvote">Upvote</a></br>
+      <% end %>
       <%= answer.points %> points </br>
-      <a href="/answers/<%= answer.id %>/downvote">Downvote</a></br>
+      <% if logged_in? %>
+        <a href="/answers/<%= answer.id %>/downvote">Downvote</a></br>
+      <% end %>
       <b>by <%= answer.user.username %></b>
 
       <% if logged_in? %>
@@ -114,9 +127,13 @@
       <% if answer.comments %>
       <ul class="answer_comments">
       <% answer.comments.order(created_at: :asc).each do |comment| %>
+      <% if logged_in? %>
         <li><a href="/comments/<%= comment.id %>/upvote">Upvote</a>
+      <% end %>
         <%= comment.points %> points
+      <% if logged_in? %>
         <a href="/comments/<%= comment.id %>/downvote">Downvote</a>
+      <% end %>
         <%= comment.body %> - by <%= comment.user.username %></li>
       <% end %>
       </ul>

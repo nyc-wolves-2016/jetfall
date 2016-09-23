@@ -1,10 +1,12 @@
 <div class="flex-item" >
   <div id="section-top">
     <h3>Top Questions</h3>
-    <div id="new-question"><a href="/questions/new">Ask a new question</a></div>
-  </div>
+    <% if logged_in? %>
+      <div id="new-question"><a href="/questions/new">Ask a new question</a></div>
+    <% end %>
+</div>
 
-  <div class="questions"
+  <div class="questions">
   <% @questions.each do |question| %>
     <article id="<%= question.id %>" class="flex-item">
     <div class="metrics-container">
@@ -36,4 +38,4 @@
   <% end %>
   </div>
 </div>
-<img id="advert" src="/images/advertisement.png" alt="ad" />
+<img id="advert" src="images/advertisement.png" alt="ad" />
