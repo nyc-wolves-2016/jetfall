@@ -27,7 +27,11 @@ post '/questions' do
   if question.save
     question.user = current_user
     question.save
-    redirect "/questions/#{question.id}"
+    if request.xhr?
+      question
+    else
+      redirect "/questions/#{question.id}"
+    end
   else
     @errors = question.errors.full_messages
     erb :'questions/new'
