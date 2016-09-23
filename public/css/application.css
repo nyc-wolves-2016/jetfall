@@ -135,21 +135,80 @@ div.question-author {
   display: none;
 }
 
+#login {
+  display: flex;
+  width: 100%;
+  font-size: 18px;
+}
+
 #login-form {
-  display: block;
-  margin: 0;
+  width: 50%;
+  margin: auto;
 }
 
-input[type=email] {
-
+#register {
+  display: flex;
+  width: 100%;
+  font-size: 18px;
 }
 
-input[type=password] {
-
+#register-form {
+  width: 50%;
+  margin: auto;
 }
 
-input[type=button] {
+#new-question {
+  display: flex;
+  width: 100%;
+  font-size: 18px;
+}
 
+#question-form {
+  width: 50%;
+  margin: auto;
+}
+
+form input.full-length {
+  box-sizing: border-box;
+  margin: 5px 0;
+  width: 100%;
+  padding: 10px;
+}
+
+form textarea {
+  box-sizing: border-box;
+  margin: 5px 0;
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  padding: 10px;
+  height: 200px;
+  vertical-align: top;
+}
+
+label.login {
+  padding: 10px 0px 10px 0px;
+}
+
+label.register {
+  padding: 10px 0px 10px 0px;
+}
+
+label.question {
+  padding: 10px 0px 10px 0px;
+}
+
+input[type=submit] {
+  background-color: #0095FF;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 20px;
+  width: 70%;
+  text-align: center;
+}
+
+#styled-button {
+  margin-left: 15%;
 }
 
 @media screen and (max-width:860px) {
