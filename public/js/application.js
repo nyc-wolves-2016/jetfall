@@ -49,7 +49,6 @@ $(document).ready(function() {
     event.preventDefault();
     $(this).hide();
     $(this).parent().find(".new_answer_comment_form").removeClass("hidden");
-
   });
 
   $("#answer-container").on("submit", ".new_answer_comment_form", function(event) {
@@ -67,8 +66,6 @@ $(document).ready(function() {
       $(".new_answer_comment_form").addClass("hidden");
       $(".answer-comment-link").show();
     });
-
   });
-
 
 });

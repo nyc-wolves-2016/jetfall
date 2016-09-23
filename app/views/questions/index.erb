@@ -3,6 +3,8 @@
     <h3>Top Questions</h3>
     <div id="new-question"><a href="/questions/new">Ask a new question</a></div>
   </div>
+
+  <div class="questions"
   <% @questions.each do |question| %>
     <article id="<%= question.id %>" class="flex-item">
     <div class="metrics-container">
@@ -32,5 +34,6 @@
     </div>
     </article>
   <% end %>
+  </div>
 </div>
 <img id="advert" src="/images/advertisement.png" alt="ad" />

@@ -10,7 +10,7 @@
     by <%= @author.username %> </br>
     <b>body:</b>
     <%= @question.body %>
-  </p>
+  </p></br>
   <% if logged_in? %>
     <a class="question-comment-link" href="/questions/<%= @question.id %>/comments/new">Comment</a>
     <form id="new_question_comment_form" action="/comments" method="post" class="hidden">
@@ -23,30 +23,39 @@
   <% if @question_comments %>
   <ul class="question_comments">
   <% @question_comments.each do |comment| %>
-    <%= erb :'/comments/_comment', locals: {comment: comment}, layout: false %>
-  <% end%>
-  </ul>
+    <li><a href="/comments/<%= comment.id %>/upvote">Upvote</a>
+    <%= comment.points %> points
+    <a href="/comments/<%= comment.id %>/downvote">Downvote</a>
+    <%= comment.body %> - by <%= comment.user.username %></li>
   <% end %>
+  </ul>
+  <% end%>
 </article>
 
 <% if logged_in? %>
-<form action="/answers" method="post">
-  <input type="text" name="answer[body]" placeholder="Put your answer details here!"></br>
-  <input type = "hidden" name="answer[question_id]" value="<%= @question.id %>">
-  <input type="submit" class="button" value="Submit">
-</form>
+<div class="answer-box">
+  <form action="/answers" method="post">
+    <input type="text" name="answer[body]" placeholder="Put your answer details here!"></br>
+    <input type = "hidden" name="answer[question_id]" value="<%= @question.id %>">
+    <input type="submit" class="button" value="Submit">
+  </form>
+</div>
 <% end %>
 
 <% if @answers %>
   <% if @best_answer %>
 
-<article class="best-answer-container">
-
-  <p>
-    <%= @best_answer.body %></br>
-    by <%= @best_answer.user.username %>
-  </p>
-</article>
+<div class="best-answer-container">
+    <span>
+    <%= @best_answer.body %>
+    <img src="/images/best.png" alt="blue ribbon" style="width:30px;height:40px;" />
+    </span>
+  </br></br>
+  <a href="/answers/<%= @best_answer.id %>/upvote">Upvote</a></br>
+  <%= @best_answer.points %> points </br>
+  <a href="/answers/<%= @best_answer.id %>/downvote">Downvote</a></br>
+  <b>by <%= @best_answer.user.username %></b>
+</div>
 
 <% end %>
 <% end %>
@@ -62,11 +71,14 @@
   </form>
 
   <% if @best_answer.comments %>
-    <ul class="best_answer_comments">
+    <ul class="best-answer-comments">
       <% @best_answer.comments.order(created_at: :asc).each do |comment| %>
-        <%= erb :'/comments/_comment', locals: {comment: comment}, layout: false %>
+        <li><a href="/comments/<%= comment.id %>/upvote">Upvote</a>
+        <%= comment.points %> points
+        <a href="/comments/<%= comment.id %>/downvote">Downvote</a>
+        <%= comment.body %> - by <%= comment.user.username %></li>
       <% end %>
-    </ul>
+      </ul>
   <% end %>
   <% end %>
 <% end %>
@@ -80,11 +92,13 @@
       <a href="/answers/<%= answer.id %>/downvote">Downvote</a></br>
       <b>by <%= answer.user.username %></b>
 
-      <% if current_user.id == answer.question.user.id %>
-        <form action="/question/<%= answer.question.id %>/best" method="post">
-          <input type="hidden" name="answer_id" value="<%= answer.id %>">
-          <input type="submit" class="button" value="Best Answer">
-        </form>
+      <% if logged_in? %>
+        <% if current_user.id == answer.question.user.id %>
+          <form action="/question/<%= answer.question.id %>/best" method="post">
+            <input type="hidden" name="answer_id" value="<%= answer.id %>">
+            <input type="submit" class="button" value="Best Answer">
+          </form>
+        <% end %>
       <% end %>
 
       <% if logged_in? %>
@@ -98,8 +112,8 @@
       <% end %>
 
       <% if answer.comments %>
-      <% answer.comments.order(created_at: :asc).each do |comment| %>
       <ul class="answer_comments">
+      <% answer.comments.order(created_at: :asc).each do |comment| %>
         <li><a href="/comments/<%= comment.id %>/upvote">Upvote</a>
         <%= comment.points %> points
         <a href="/comments/<%= comment.id %>/downvote">Downvote</a>
