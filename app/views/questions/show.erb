@@ -38,12 +38,19 @@
         <a class="upvote" href="/comments/<%= comment.id %>/upvote"><span>Upvote</span></a>
       <% end %>
         <span class="points-count"><%= comment.points %> points</span>
+    <li id="<% comment.id %>">
+      <% if logged_in? %>
+        <a class="upvote" href="/comments/<%= comment.id %>/upvote">Upvote</a>
+      <% end %>
+      <span id="<%= comment.id %>"><%= comment.points %> points</span>
       <% if logged_in? %>
         <a class="downvote" href="/comments/<%= comment.id %>/downvote"><span>Downvote</span></a>
       </div>
       <% end %>
     <div class="comment-body"><%= comment.body %><cite>by <%= comment.user.username %></cite></div>
   </li>
+    <%= comment.body %> - by <%= comment.user.username %>
+    </li>
   <% end %>
   </ul>
   <% end%>
