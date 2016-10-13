@@ -314,10 +314,10 @@ a:focus { outline: none;-moz-outline-style: none;}
 
 .upvote { color: orange; text-decoration: none; }
 .upvote span { display: none; }
-/*.upvote:after { content: '⬆'; }*/
+.upvote:after { content: '⬆'; }
 .downvote { color: lightblue; text-decoration: none; }
 .downvote span { display: none; }
-/*.downvote:after { content: '⬇'; }*/
+.downvote:after { content: '⬇'; }
 .question_comments li { list-style: none; border-bottom: 1px solid #ccc; padding: 4px; }
 .best-answer-comments li { list-style: none; border-bottom: 1px solid #ccc; padding: 4px; }
 .answer_comments li { list-style: none; border-bottom: 1px solid #ccc; padding: 4px; }

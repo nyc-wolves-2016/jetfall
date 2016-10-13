@@ -25,12 +25,12 @@
     <a class="question-comment-link" href="/questions/<%= @question.id %>/comments/new">Comment</a>
     <form id="new_question_comment_form" action="/comments" method="post" class="hidden">
       <textarea name="body" rows="8" cols="40" placeholder="Put your comment here..."></textarea>
-      <input type="text" name="body" placeholder="Put your comment here!"></br>
       <input type = "hidden" name="commentable_id" value="<%= @question.id %>">
       <input type = "hidden" name="commentable_type" value="<%= @question.class %>">
       <input type="submit" class="button" value="Submit">
     </form>
   <% end %>
+
   <% if @question_comments %>
   <ul class="question_comments">
   <% @question_comments.each do |comment| %>
@@ -105,7 +105,7 @@
       </ul>
   <% end %>
   <% end %>
-<% end %> --> -->
+<% end %>
 
 <div id="answer-container" class="answer-container">
   <% @answers.each do |answer| %>
