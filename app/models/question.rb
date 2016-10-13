@@ -9,7 +9,7 @@ class Question < ActiveRecord::Base
   validates :title, :body, presence: true
   validates :title, length: { maximum: 100,
     too_long: "%{count} characters is the maximum allowed" }
-  validates :body, length: { maximum: 500,
+  validates :body, length: { maximum: 3000,
     too_long: "%{count} characters is the maximum allowed" }
 
   def total_votes
