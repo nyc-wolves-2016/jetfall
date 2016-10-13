@@ -1,25 +1,30 @@
-<h1><%= @question.title %></h1>
+<h1 id='section-top'><%= @question.title %></h1>
 
 <%= erb(:_errors) %>
 
-<article class='question-container'>
-  <p>
+<article id='question-container'>
+  <div id="voting-container">
     <% if logged_in? %>
-      <a class="upvote" href="/questions/<%= @question.id %>/upvote"><span>Upvote</span></a></br>
+      <a class="upvote" href="/questions/<%= @question.id %>/upvote">
+        <img class="arrow" src="/images/triangle_up.png" alt="Upvote" />
+      </a>
+      <div id="<%= @question.id %>" class="count"><%= @question.points %></div>
+      <a class="downvote" href="/questions/<%= @question.id %>/downvote">
+        <img class="arrow" src="/images/triangle_down.png" alt="Downvote" />
+      </a>
+    <% else %>
+      <img class="arrow" src="/images/triangle_up.png" alt="Upvote" />
+      <div id="<%= @question.id %>" class="count"><%= @question.points %></div>
+      <img class="arrow" src="/images/triangle_down.png" alt="Downvote" />
     <% end %>
+  </div>
+  <div id="question-body"><%= @question.body %></div>
+  <div id="author-info"><%= "Asked #{long_form_date(@question.created_at)}" %> by <%= @author.username %></div>
 
-      <span id="<%= @question.id %>" class="points-count"><%= @question.points %> points </span></br>
-
-    <% if logged_in? %>
-      <a class="downvote" href="/questions/<%= @question.id %>/downvote"><span>Downvote</span></a></br>
-    <% end %>
-    by <%= @author.username %> </br>
-    <b>body:</b>
-    <%= @question.body %>
-  </p></br>
   <% if logged_in? %>
     <a class="question-comment-link" href="/questions/<%= @question.id %>/comments/new">Comment</a>
     <form id="new_question_comment_form" action="/comments" method="post" class="hidden">
+      <textarea name="body" rows="8" cols="40" placeholder="Put your comment here..."></textarea>
       <input type="text" name="body" placeholder="Put your comment here!"></br>
       <input type = "hidden" name="commentable_id" value="<%= @question.id %>">
       <input type = "hidden" name="commentable_type" value="<%= @question.class %>">
@@ -100,7 +105,7 @@
       </ul>
   <% end %>
   <% end %>
-<% end %>
+<% end %> --> -->
 
 <div id="answer-container" class="answer-container">
   <% @answers.each do |answer| %>

@@ -59,6 +59,10 @@ img.logo-img {
   vertical-align: top;
 }
 
+h1 {
+  padding-top: 15px;
+}
+
 h3 {
   display: inline-block;
 }
@@ -163,6 +167,42 @@ div.question-author {
   font-size: 18px;
 }
 
+#question-container {
+  text-align: center;
+}
+
+#voting-container {
+  vertical-align: top;
+  display: inline-block;
+  padding: 0px 20px 0px 20px;
+}
+
+img.arrow {
+  width: 20px;
+  height: auto;
+}
+
+#question-body {
+  vertical-align: top;
+  display: inline-block;
+  width: 90%;
+}
+
+#author-info {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  width: 30%;
+  padding: 10px;
+  background-color: grey;
+  color: white;
+}
+
+a.question-comment-link {
+  display: block;
+  padding: 20px;
+}
+
 #question-form {
   width: 50%;
   margin: auto;
@@ -195,10 +235,6 @@ label.register {
 
 label.question {
   padding: 10px 0px 10px 0px;
-}
-
-input[type=submit] {
-
 }
 
 #styled-button {
@@ -277,29 +313,14 @@ a:focus { outline: none;-moz-outline-style: none;}
 }
 
 .upvote { color: orange; text-decoration: none; }
-
 .upvote span { display: none; }
-
-.upvote:after { content: '⬆'; }
-
+/*.upvote:after { content: '⬆'; }*/
 .downvote { color: lightblue; text-decoration: none; }
-
 .downvote span { display: none; }
-
-.downvote:after { content: '⬇'; }
-
-.points-count { position: relative; bottom: 2px; color: #999; font-size: 12px;
-
-}
-
+/*.downvote:after { content: '⬇'; }*/
 .question_comments li { list-style: none; border-bottom: 1px solid #ccc; padding: 4px; }
-
 .best-answer-comments li { list-style: none; border-bottom: 1px solid #ccc; padding: 4px; }
-
 .answer_comments li { list-style: none; border-bottom: 1px solid #ccc; padding: 4px; }
-
 .ballot { width: 100px; padding-left: 10px; float: right; }
-
 .comment-body cite{ color: gray; font-size: 12px; }
-
 .comment-body cite:before{ content: " - "; }

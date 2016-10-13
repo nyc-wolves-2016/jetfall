@@ -8,7 +8,7 @@ users = []
 questions = []
 20.times {
         questions << Question.create!(title: "#{Faker::Hacker.ingverb} #{Faker::Hacker.noun}",
-                         body: Faker::StarWars.quote,
+                         body: (Faker::Hipster.paragraphs).join(" "),
                          user_id: users.sample.id
         )
 }

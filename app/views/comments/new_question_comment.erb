@@ -1,8 +1,8 @@
 <%= erb(:_errors) %>
 <form id="new_comment_form" action="/comments" method="post">
-  <input type="text" name="body" placeholder="Put your comment here!"></br>
-  <input type = "hidden" name="commentable_id" value="<%= @question.id %>">
-  <input type = "hidden" name="commentable_type" value="<%= @question.class %>">
-  <input type="submit" class="button" value="Submit">
+  <input type="text" name="body" placeholder="Put your comment here!">
+  <input type ="hidden" name="commentable_id" value="<%= @question.id %>">
+  <input type ="hidden" name="commentable_type" value="<%= @question.class %>">
+  <input type="submit" value="Submit">
 </form>
 _com
